@@ -17,9 +17,19 @@ async function main() {
   const Greeter = await hre.ethers.getContractFactory("Greeter");
   const greeter = await Greeter.deploy("Hello, Hardhat!");
 
+  const PepiCoin = await hre.ethers.getContractFactory("PepiCoin");
+  const pepicoin = await PepiCoin.deploy();
+
+  const Staking = await hre.ethers.getContractFactory("Staking");
+  const staking = await Staking.deploy("0xdd2fd4581271e230360230f9337d5c0430bf44c0", "0xbda5747bfd65f08deb54cb465eb87d40e51b197e");
+
   await greeter.deployed();
+  await pepicoin.deployed();
+  await staking.deployed();
 
   console.log("Greeter deployed to:", greeter.address);
+  console.log("PepiCoin deployed to:", pepicoin.address);
+  console.log("Staking deployed to:", staking.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
